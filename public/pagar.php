@@ -1,10 +1,11 @@
 <?php
 // Paso 1: configura y envía redirección para pago en Transbank
 
-require_once './lib/PagoWebpay.php';
-require_once './lib/PagoWebpayFactory.php';
-require_once './Config.php';
-require_once './lib/Util.php';
+require_once '../vendor/autoload.php';
+
+use config\Config;
+use lib\PagoWebpayFactory;
+use lib\Util;
 
 // variables transaccion
 $host           = Config::HOST;
@@ -23,5 +24,5 @@ Util::logServer($obj);
 
 $title  = 'Pagar';
 $body   = $webpay->getHtmlRedirectForm($obj->url, $obj->token);
-require_once 'layout/layout.php';
+require_once '../view/layout.php';
 ?>

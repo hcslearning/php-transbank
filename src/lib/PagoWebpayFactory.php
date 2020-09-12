@@ -1,5 +1,10 @@
 <?php
 
+namespace lib;
+
+use lib\PagoWebpay;
+use config\Config;
+
 class PagoWebpayFactory {
     // __construct($environment = "TESTING", $codigoComercio = null, $privateKey = null, $publicCert = null, $webpayCert = null) {
     public static function createInstance(): PagoWebpay {

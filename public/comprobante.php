@@ -2,10 +2,10 @@
 
 // Paso 3: genera comprobante si está todo OK o sino muestra error
 
-require_once './lib/PagoWebpay.php';
-require_once './lib/PagoWebpayFactory.php';
-require_once './Config.php';
-require_once './lib/Util.php';
+require_once '../vendor/autoload.php';
+
+use lib\PagoWebpayFactory;
+use lib\Util;
 
 // redirige al pago
 $webpay = PagoWebpayFactory::createInstance();
@@ -22,5 +22,5 @@ EOT;
 });
 
 $title  = 'Comprobante';
-require_once 'layout/layout.php';
+require_once '../view/layout.php';
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+namespace lib;
 
 use Transbank\Webpay\Configuration;
 use Transbank\Webpay\Webpay;

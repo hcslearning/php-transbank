@@ -1,5 +1,10 @@
 <?php
 
+namespace lib;
+
+use lib\PagoWebpay;
+use config\Config;
+
 class Util {
     
     public static function logServer($obj) {

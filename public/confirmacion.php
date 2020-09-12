@@ -2,10 +2,11 @@
 
 // Paso 2: Comprueba que transaccion haya sido correcta y persiste info
 
-require_once './lib/PagoWebpay.php';
-require_once './lib/PagoWebpayFactory.php';
-require_once './Config.php';
-require_once './lib/Util.php';
+require_once '../vendor/autoload.php';
+
+use lib\PagoWebpayFactory;
+use lib\Util;
+
 
 $token = $_POST['token_ws'];
 
@@ -30,4 +31,4 @@ EOT;
 });
 
 $title  = 'Confirmación';
-require_once 'layout/layout.php';
+require_once '../view/layout.php';

@@ -1,0 +1,15 @@
+<?php
+
+namespace config;
+
+class Config {
+    const URL_DB            = 'pgsql:host=localhost;port=5432;dbname=test;user=juanito;password=1234';
+    const HOST              = 'http://localhost:8000';
+    const URL_RETORNO       = "/confirmacion.php";
+    const URL_FINAL         = "/comprobante.php";
+    const ENVIRONMENT       = PagoWebpay::ENV_TESTING;
+    const CODIGO_COMERCIO   = "";
+    const PRIVATE_KEY       = "";
+    const PUBLIC_CERT       = "";
+    const WEBPAY_CERT       = "";
+}

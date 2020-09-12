@@ -6,4 +6,4 @@
 <?php 
 $title = "Pago con Webpay";
 $body = ob_get_clean();
-require_once 'layout/layout.php';
+require_once '../view/layout.php';
