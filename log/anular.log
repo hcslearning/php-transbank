@@ -1,0 +1,9 @@
+[Sat Sep 12 05:58:38 2020] array(3) {
+  ["TBK_ID_SESION"]=>
+  string(12) "580812092020"
+  ["TBK_ORDEN_COMPRA"]=>
+  string(12) "202009120858"
+  ["TBK_TOKEN"]=>
+  string(64) "e6f842e31baffe8953411ccf8baf015f3aa8270f95e627730e388f8d9fcbb9cd"
+}
+

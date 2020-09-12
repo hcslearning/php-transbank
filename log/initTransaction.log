@@ -1,0 +1,9 @@
+[Sat Sep 12 05:45:15 2020] object(Transbank\Webpay\initTransactionResponse)#9 (3) {
+  ["return"]=>
+  NULL
+  ["token"]=>
+  string(64) "ec802834fa45a4dcdf83af838ec04723eb9a221a5e27d9789a7d637cb91fc7ab"
+  ["url"]=>
+  string(61) "https://webpay3gint.transbank.cl/webpayserver/initTransaction"
+}
+
