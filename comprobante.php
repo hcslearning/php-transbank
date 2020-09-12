@@ -14,7 +14,11 @@ $body   = $webpay->comprobante($_POST, function( $post ){
     return "<h1>Pago Aprobado</h1>";
 }, function( $post ){
     Util::logServer( $post );
-    return "<h1 style='color: red;'>El pago no se completó porque el usuario canceló el proceso de pago.</h1>";
+    $pid = $_POST['TBK_ORDEN_COMPRA'];
+    return <<<EOT
+<h1 style='color: red;'>Pago del pedido #$pid anulado por el usuario.</h1>
+<p>El pago no se completó porque el usuario canceló el proceso de pago.</p>
+EOT;
 });
 
 $title  = 'Comprobante';

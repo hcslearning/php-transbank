@@ -18,7 +18,15 @@ $body       = $webpay->confirmarTransaccion($token, function($result, $output){
     // persistir en BD resultado
 }, function($result, $output){
     // error callback
-    
+    return <<<EOT
+<br />
+Las posibles causas de este rechazo son:
+<ul>
+    <li> Error en el ingreso de los datos de su tarjeta de Crédito o Débito (fecha y/o código de seguridad).</li>
+    <li> Su tarjeta de Crédito o Débito no cuenta con saldo suficiente.</li>
+    <li> Tarjeta aún no habilitada en el sistema financiero.</li>
+</ul>
+EOT;
 });
 
 $title  = 'Confirmación';
