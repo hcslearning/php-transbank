@@ -17,14 +17,16 @@ class PagoWebpay {
     private $publicCert     = null;
     private $webpayCert     = null;
     
-    function __construct($testing = true, $codigoComercio = null, $privateKey = null, $publicCert = null, $webpayCert = null) {
-        if( !$testing ) {
-            $this->environment = self::ENV_PRODUCCION;
+    function __construct($environment = "TESTING", $codigoComercio = null, $privateKey = null, $publicCert = null, $webpayCert = null) {
+        $this->environment = $environment;
+        if( $this->environment == self::ENV_TESTING ) {
+            return;
+        } else {
+            $this->codigoComercio   = $codigoComercio;
+            $this->privateKey       = $privateKey;
+            $this->publicCert       = $publicCert;
+            $this->webpayCert       = $webpayCert;
         }
-        $this->codigoComercio   = $codigoComercio;
-        $this->privateKey       = $privateKey;
-        $this->publicCert       = $publicCert;
-        $this->webpayCert       = $webpayCert;
     }
     
     // paso 1: crear transaccion - puede ser para testing o de produccion
@@ -81,43 +83,31 @@ EOT;
     /**
      * @param string $token Representa a 'token_ws' que viene vía POST desde Transbank 
      */
-    function confirmarTransaccion($token, $callback) {
+    function confirmarTransaccion($token, $callback, $errorCallback) {
         $transaccion    = $this->getTransaccion();
         $result         = $transaccion->getTransactionResult($token);
         $output         = $result->detailOutput;
         if( $output->responseCode == 0 ) {
             // Transaccion exitosa, puedes procesar el pedido
-            $formAction = $result->getUrlRedirection();
+            $formAction = $result->urlRedirection;
             
             $callback($result, $output);
             
             return $this->getHtmlRedirectForm($formAction, $token);
         } else {
-            return generarMensajeError();
+            return $errorCallback($result, $output);
         }
-    }
-    
-    function generarMensajeError($pedidoId = '') {
-        return <<<EOT
-<h1>El pago de su pedido $pid fue rechazado:</h1>
-<br />
-Las posibles causas de este rechazo son:
-<ul>
-    <li> Error en el ingreso de los datos de su tarjeta de Crédito o Débito (fecha y/o código de seguridad).</li>
-    <li> Su tarjeta de Crédito o Débito no cuenta con saldo suficiente.</li>
-    <li> Tarjeta aún no habilitada en el sistema financiero.</li>
-</ul>
-EOT;
     }
     
     // paso 5: paso final - comprobante
-    function comprobante($arrPost, $callback) {
+    function comprobante($arrPost, $callback, $errorCallback) {
         if( !isset($arrPost['token_ws']) ) {
             // transaccion anulada 
-            return "El pago no se completó porque el usuario canceló el proceso de pago o excedió el tiempo permitido.";
+            return $errorCallback( $arrPost );
         }
         
-        return $callback($arrPost);
+        // exito
+        return $callback( $arrPost );
     }
 }
 
