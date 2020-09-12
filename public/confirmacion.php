@@ -6,19 +6,24 @@ require_once '../vendor/autoload.php';
 
 use lib\PagoWebpayFactory;
 use lib\Util;
-
+use lib\Estado;
 
 $token = $_POST['token_ws'];
 
 // redirige al pago
 $webpay     = PagoWebpayFactory::createInstance();
-$body       = $webpay->confirmarTransaccion($token, function($result, $output){
+$body       = $webpay->confirmarTransaccion($token, function($token, $result, $output){
+
     Util::logServer( $result );
     Util::logServer( $output );
     
     // persistir en BD resultado
-}, function($result, $output){
+    db\BaseDatos::update($token, Estado::PAGADO, $result->cardDetail->cardNumber, $result->cardDetail->cardExpirationDate,
+            $output->authorizationCode, $result->accountingDate, $result->transactionDate, $result->VCI, $output->paymentTypeCode, $output->sharesNumber, $output->commerceCode);
+    
+}, function($token, $result, $output){
     // error callback
+    db\BaseDatos::update($token, Estado::RECHAZADO);
     return <<<EOT
 <br />
 Las posibles causas de este rechazo son:

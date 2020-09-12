@@ -91,11 +91,11 @@ EOT;
             // Transaccion exitosa, puedes procesar el pedido
             $formAction = $result->urlRedirection;
             
-            $callback($result, $output);
+            $callback($token, $result, $output);
             
             return $this->getHtmlRedirectForm($formAction, $token);
         } else {
-            return $errorCallback($result, $output);
+            return $errorCallback($token, $result, $output);
         }
     }
     
