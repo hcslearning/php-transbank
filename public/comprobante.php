@@ -8,6 +8,8 @@ use lib\PagoWebpayFactory;
 use lib\Util;
 use db\BaseDatos;
 use lib\Estado;
+use mailer\Mailer;
+use config\Config;
 
 // redirige al pago
 $webpay = PagoWebpayFactory::createInstance();
@@ -16,7 +18,7 @@ $body   = $webpay->comprobante($_POST, function( $post ){
     $pago   = BaseDatos::findByToken($token);
     Util::logServer( $post );
     
-    return <<<OKK
+    $html = <<<OKK
 <h1>Pago Aprobado</h1>
 <table>
    <tr>
@@ -61,6 +63,16 @@ $body   = $webpay->comprobante($_POST, function( $post ){
 </table>
 OKK;
     
+    $text = <<<TEX
+Hoy {$pago->fecha} se ha recibido un pago por {$pago->monto} desde la Tarjeta **** **** **** {$pago->tarjeta}
+pagado con {$pago->tipo_pago} de la Orden de Compra Número {$pago->orden_compra} y con el siguiente 
+código de autorización: {$pago->codigo_autorizacion}.
+TEX;
+
+    Mailer::mail(Config::MAIL_TO, "Pago OC $pago->orden_compra por $$pago->monto", $html, $text);
+    
+    
+    return $html;
     
 }, function( $post ){
     Util::logServer( $post );

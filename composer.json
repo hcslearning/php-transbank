@@ -3,7 +3,8 @@
     "description": "Ejemplo basico de implementacion de SDK para PHP de Transbank",
     "type": "project",
     "require": {
-        "transbank/transbank-sdk": "^1.7"
+        "transbank/transbank-sdk": "^1.7",
+        "sendgrid/sendgrid": "7.5.2"
     },
     "autoload": {
         "psr-4": {"": "src/"}
