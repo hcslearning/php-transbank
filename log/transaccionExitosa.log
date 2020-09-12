@@ -1,0 +1,72 @@
+[Sat Sep 12 06:00:53 2020] object(Transbank\Webpay\transactionResultOutput)#10 (8) {
+  ["accountingDate"]=>
+  string(4) "0912"
+  ["buyOrder"]=>
+  string(12) "202009120900"
+  ["cardDetail"]=>
+  object(Transbank\Webpay\cardDetail)#16 (2) {
+    ["cardNumber"]=>
+    string(4) "6623"
+    ["cardExpirationDate"]=>
+    NULL
+  }
+  ["detailOutput"]=>
+  object(Transbank\Webpay\wsTransactionDetailOutput)#12 (8) {
+    ["authorizationCode"]=>
+    string(4) "1213"
+    ["paymentTypeCode"]=>
+    string(2) "VC"
+    ["responseCode"]=>
+    int(0)
+    ["sharesAmount"]=>
+    string(2) "11"
+    ["sharesNumber"]=>
+    int(12)
+    ["amount"]=>
+    string(2) "12"
+    ["commerceCode"]=>
+    string(12) "597020000540"
+    ["buyOrder"]=>
+    string(12) "202009120900"
+  }
+  ["sessionId"]=>
+  string(9) "912092020"
+  ["transactionDate"]=>
+  string(29) "2020-09-12T06:00:08.926-03:00"
+  ["urlRedirection"]=>
+  string(57) "https://webpay3gint.transbank.cl/webpayserver/voucher.cgi"
+  ["VCI"]=>
+  string(3) "TSY"
+}
+
+[Sat Sep 12 06:00:53 2020] object(Transbank\Webpay\wsTransactionDetailOutput)#12 (8) {
+  ["authorizationCode"]=>
+  string(4) "1213"
+  ["paymentTypeCode"]=>
+  string(2) "VC"
+  ["responseCode"]=>
+  int(0)
+  ["sharesAmount"]=>
+  string(2) "11"
+  ["sharesNumber"]=>
+  int(12)
+  ["amount"]=>
+  string(2) "12"
+  ["commerceCode"]=>
+  string(12) "597020000540"
+  ["buyOrder"]=>
+  string(12) "202009120900"
+}
+
+[Sat Sep 12 06:00:53 2020] [::1]:43284 [200]: POST /confirmacion.php
+[Sat Sep 12 06:00:53 2020] [::1]:43284 Closing
+[Sat Sep 12 06:00:58 2020] [::1]:43308 Accepted
+[Sat Sep 12 06:00:58 2020] array(1) {
+  ["token_ws"]=>
+  string(64) "e411e7c3e7e0a16daad91e04c88bae4d1ebd5206795949fe2fc192f519ed30ae"
+}
+
+[Sat Sep 12 06:00:58 2020] [::1]:43302 [200]: POST /comprobante.php
+[Sat Sep 12 06:00:58 2020] [::1]:43302 Closing
+
+
